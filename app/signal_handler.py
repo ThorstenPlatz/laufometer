@@ -11,10 +11,11 @@ of the application.
 """
 class SigIntHandler(Observable):
     def __init__(self):
-        signal.signal(signal.SIGINT, self._signal_handler)
+        Observable.__init__(self)
+        signal.signal(signal.SIGINT, self._signalHandler)
         
     def waitForSignal(self): 
         signal.pause()
         
-    def _signalHandler(self):
-        super.notify()
+    def _signalHandler(self, signal, frame):
+        self.notify()

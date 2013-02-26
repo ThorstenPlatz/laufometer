@@ -5,7 +5,9 @@ from common.observable import Observable
 
 class InputTrigger(threading.Thread, Observable):
 	def __init__(self, inPin):
-		threading.Thread.__init__(self) 
+		Observable.__init__(self)
+		threading.Thread.__init__(self)
+		super(InputTrigger,self).__init__()
 		self.inPin = inPin
 
 	def run(self):

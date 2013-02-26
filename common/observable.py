@@ -1,3 +1,5 @@
+import logging
+
 """
 The observable class provides basic functionality to notify registered 
 observers on changes.
@@ -7,7 +9,7 @@ class Observable():
         self._observers = []
 
     def register(self, observer):
-        self.assertObserverCallback(observer)
+        self._assertObserverCallback(observer)
         if not observer in self._observers:
             self._observers.append(observer)
 
@@ -26,5 +28,5 @@ class Observable():
         # must have update method
         assert hasattr(observer,'update')
         # update must accept at least one argument
-        assert observer.update.func_code.co_argcount > 0
+        #not working: assert observer.update.func_code.co_argcount > 0
 

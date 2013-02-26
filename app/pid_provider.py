@@ -39,8 +39,8 @@ class PidFileProvider(PidProvider):
 			f.close()
 			logging.debug("Created pidfile '%s' for PID '%s'" % (self._pidfile, self.pid()) )
 
-
 	def __del__(self):
+		logging.debug("Removing pidfile '%s' for PID '%s'" % (self._pidfile, self.pid()) )
 		if os.path.isfile(self._pidfile):
 			os.unlink(self._pidfile)
 			logging.debug("Removed pidfile '%s' for PID '%s'" % (self._pidfile, self.pid()) )
