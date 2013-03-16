@@ -5,6 +5,7 @@ from app.pid_provider import PidFileProvider
 from event.event_recorder import EventRecorder
 from gpio.circuit import Circuit
 from app.signal_handler import SigIntHandler
+from persistence.event_writer import EventWriter
 
 ######################################
 # Configuration 
@@ -18,6 +19,7 @@ outPin = 10
 # The input pin used to detect events
 inPin = 7
 
+eventFile = "triggers"
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -36,6 +38,9 @@ class MainApplication():
         
         self._trigger = InputTrigger(self._circuit.inPin)
         self._eventRecorder = EventRecorder()
+
+        self._eventWriter = EventWriter(eventFile)
+        self._eventRecorder.register(self._eventWriter)
         
         self._trigger.register(self._eventRecorder)
         self._trigger.start()
