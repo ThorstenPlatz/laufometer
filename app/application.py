@@ -19,7 +19,8 @@ outPin = 10
 # The input pin used to detect events
 inPin = 7
 
-eventFile = "triggers"
+eventFile = "/var/run/laufometer/event-logs/triggers"
+pidFile = "/var/run/laufometer/pid/laufometer.pid"
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -29,7 +30,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class MainApplication():
     def run(self):
-        self._pidProvider = PidFileProvider()
+        self._pidProvider = PidFileProvider(pidFile)
 
         circuitConfig = { 'inPin': inPin, 'outPin': outPin }
         self._circuit = Circuit()

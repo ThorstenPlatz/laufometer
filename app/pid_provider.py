@@ -21,13 +21,13 @@ PidFileProvider.
 
 """
 class PidFileProvider(PidProvider):
-	def __init__(self, name = None):
-		if(name is None):
-			filename = "pid"
+	def __init__(self, pidFilename = None):
+		if(pidFilename is None):
+			filename = "./pid"
 		else:
-			filename = name + ".pid"
+			filename = pidFilename
 
-		self._pidfile = "./" + filename 
+		self._pidfile = filename 
 		
 		if os.path.isfile(self._pidfile):
 			msg = "Pidfile '%s' already exists!" % self._pidfile
