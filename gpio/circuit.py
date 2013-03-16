@@ -19,7 +19,7 @@ class Circuit():
         logging.debug("- power supply pin: %s" % self.outPin)
         
     # Setup pin numbering and input/output pins.
-    def init(self):
+    def turnOn(self):
         RPIO.setmode(RPIO.BCM)
     
         RPIO.setup(self.outPin, RPIO.OUT)
@@ -27,7 +27,11 @@ class Circuit():
         
         self._selftest()
     
-    
+    # switch outPin to off
+    def turnOff(self):
+        RPIO.output(self.outPin, False)
+
+
     # Perform simple selftest.
     # Checks if the readout works as expected assuming the switch is open.
     def _selftest(self):

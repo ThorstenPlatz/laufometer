@@ -34,7 +34,7 @@ class MainApplication():
         circuitConfig = { 'inPin': inPin, 'outPin': outPin }
         self._circuit = Circuit()
         self._circuit.configure(circuitConfig)
-        self._circuit.init()
+        self._circuit.turnOn()
         
         self._trigger = InputTrigger(self._circuit.inPin)
         self._eventRecorder = EventRecorder()
@@ -57,6 +57,8 @@ class MainApplication():
         logging.info("Application is shutting down...")
         self._trigger.stop()
         self._trigger.join()
+
+        self._circuit.turnOff()
 
         # make sure pid file is removed
         self._pidProvider.__del__()
