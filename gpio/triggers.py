@@ -12,7 +12,7 @@ class InputTrigger(threading.Thread, Observable):
 
         def run(self):
                 logging.debug("InputTrigger running on GPIO %s" % self.inPin)
-                RPIO.add_interrupt_callback(self.inPin, self.inputCallback, edge='falling')
+                RPIO.add_interrupt_callback(self.inPin, self.inputCallback, edge='falling', debounce_timeout_ms=220)
                 RPIO.wait_for_interrupts()
                 logging.debug("InputTrigger on GPIO %s stopped." % self.inPin)
 
