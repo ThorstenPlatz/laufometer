@@ -2,6 +2,11 @@
 
 PID_FILE="/var/run/laufometer/pid/laufometer.pid"
 
+RED="$(tput setaf 1)"
+GREEN="$(tput setaf 2)"
+RESET="$(tput sgr0)"
+
+
 if [ -f $PID_FILE ];
 then
     PID="$(cat $PID_FILE)"
@@ -9,12 +14,12 @@ then
     then
         if [ $(ps -p $PID | wc -l) = 2 ];
         then
-            echo "running with PID=$PID"
+            echo "${GREEN}running with PID=$PID ${RESET}"
             exit 0
         fi
     fi
 fi
 
 
-echo "stopped"
+echo "${RED}stopped${RESET}"
 exit 1
