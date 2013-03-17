@@ -60,6 +60,7 @@ class MainApplication():
         self._trigger.join()
 
         self._circuit.turnOff()
+        self._eventWriter.close()
 
         # make sure pid file is removed
         self._pidProvider.__del__()
