@@ -19,7 +19,7 @@ outPin = 10
 # The input pin used to detect events
 inPin = 7
 
-eventFile = "/var/run/laufometer/event-logs/triggers"
+eventFile = "/var/log/laufometer/event-logs/triggers"
 pidFile = "/var/run/laufometer/pid/laufometer.pid"
 
 logging.basicConfig(level=logging.DEBUG)
