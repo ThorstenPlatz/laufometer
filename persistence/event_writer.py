@@ -21,10 +21,11 @@ class EventWriter():
             if(self._filename is not None):
                 self._file.close()
             self._filename = currentFilename
-            self._file = open(self._filename, 'a', encoding='utf-8')
+            self._file = open(self._filename, 'at', encoding='utf-8', buffering=1)
         
         for event in events:
             self.appendEvent(self._file, event)
+        self._file.flush()
 
     def appendEvent(self, file, event):
         formattedTime = event.strftime('%Y-%m-%d %H:%M:%S.%f')

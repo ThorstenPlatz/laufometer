@@ -15,7 +15,9 @@ class EventRecorder(Observable):
         self.notify()
 
     def events(self):
-        return self._events
+        eventBunch = self._events
+        self.clearEvents()
+        return eventBunch
 
     def clearEvents(self):
         self._events = []
