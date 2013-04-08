@@ -28,7 +28,11 @@ class EventWriter():
         self._file.flush()
 
     def appendEvent(self, file, event):
-        formattedTime = event.strftime('%Y-%m-%d %H:%M:%S.%f')
+        formattedTime = event.strftime('%Y-%m-%dT%H:%M:%S')
+        # add milliseconds by cutting of microseconds
+        micros = event.strftime('%f') 
+        millis = micros[:3] #ignoring rounding errors
+        formattedTime += "." + millis
         file.write(formattedTime)
         file.write("\n")
 

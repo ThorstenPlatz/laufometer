@@ -29,6 +29,10 @@ class PidFileProvider(PidProvider):
 
 		self._pidfile = filename 
 		
+		
+		directory = os.path.dirname(self._pidfile)
+		if not os.path.exists(directory):
+		    os.makedirs(directory)
 		if os.path.isfile(self._pidfile):
 			msg = "Pidfile '%s' already exists!" % self._pidfile
 			logging.error(msg)

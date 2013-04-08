@@ -1,10 +1,23 @@
 #!/bin/sh
 
+# LSB-compliance meta information:
+
+### BEGIN INIT INFO
+# Provides:          laufometer
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start laufometer-client at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
 OUT_FILE="/var/log/laufometer/laufometer.log"
 PID_FILE="/var/run/laufometer/pid/laufometer.pid"
 
 SCRIPT=$(which $0)
-SCRIPT_DIR=$(dirname $SCRIPT)
+#SCRIPT_DIR=$(dirname $SCRIPT)
+SCRIPT_DIR="/home/pi/laufometer/laufometer"
 
 # text formatting options
 RED="$(tput setaf 1)"
@@ -64,6 +77,13 @@ case "$1" in
     status
     ;;
   status)
+    status
+    ;;
+  restart)
+    stop
+    sleep 3
+    start
+    sleep 3
     status
     ;;
   *)
