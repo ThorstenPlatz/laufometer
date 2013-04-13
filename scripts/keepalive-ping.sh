@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KEEPALIVE_URL="http://laufometer.appspot.com/api/rest/public/watchdog/keepalive?clientId=paul-dsungi"
+KEEPALIVE_URL="http://laufometer.appspot.com/api/public/watchdog/keepalive/paul-dsungi"
 
 if [ $(/etc/init.d/laufometer status | grep "running with PID" | wc -l) -eq 1 ]; then 
   # send keepalive ping
